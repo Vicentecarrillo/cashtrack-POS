@@ -1,0 +1,24 @@
+# example netlify.toml
+[functions]
+  directory = "netlify/functions"
+
+# Optional: SPA fallback if you add routes later
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+  Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+  Cache-Control = "no-cache"

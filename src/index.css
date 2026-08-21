@@ -1,0 +1,320 @@
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* Enable manual dark mode via .dark on <html> or a wrapper */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------
+   BASE (defaults across app)
+   --------------------------- */
+@layer base {
+  /* Remove any old global button styles from the Vite template */
+  /* (If present) */
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
+  html,
+  body {
+    @apply bg-white text-gray-900 dark:bg-slate-900 dark:text-slate-100;
+  }
+
+  /* Typography defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-gray-900 dark:text-slate-100;
+  }
+  p,
+  span,
+  label,
+  small,
+  strong,
+  b,
+  i,
+  em,
+  div {
+    @apply text-gray-800 dark:text-slate-300;
+  }
+
+  /* Links */
+  a {
+    @apply text-emerald-700 hover:text-emerald-600 dark:text-emerald-400 dark:hover:text-emerald-300;
+  }
+
+  /* Form controls – global defaults */
+  input,
+  select,
+  textarea {
+    @apply rounded-xl border px-3 py-2 outline-none
+           border-slate-300 bg-white text-gray-900
+           dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100
+           focus-visible:ring-2 focus-visible:ring-emerald-400 text-base;
+  }
+
+  button {
+    @apply rounded-xl border px-3 py-2 font-medium transition
+           border-slate-300 bg-white text-gray-900 hover:bg-gray-100
+           dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-50 pointer-events-none;
+  }
+}
+
+/* ---------------------------
+   UTILITIES (design tokens)
+   --------------------------- */
+@layer utilities {
+  /* Foreground scale */
+  .text-fg-1 {
+    @apply text-gray-900 dark:text-slate-100;
+  } /* strongest */
+  .text-fg-2 {
+    @apply text-gray-800 dark:text-slate-300;
+  } /* body */
+  .text-fg-3 {
+    @apply text-gray-600 dark:text-slate-400;
+  } /* muted */
+
+  /* Surface scale */
+  .bg-surface-1 {
+    @apply bg-white dark:bg-slate-900;
+  } /* page/root */
+  .bg-surface-2 {
+    @apply bg-gray-100 dark:bg-slate-800;
+  } /* cards */
+  .bg-surface-3 {
+    @apply bg-gray-200 dark:bg-slate-700;
+  } /* raised */
+
+  /* Borders */
+  .border-subtle {
+    @apply border-slate-200 dark:border-slate-700;
+  }
+  .border-muted {
+    @apply border-slate-300 dark:border-slate-700;
+  }
+
+  /* Dividers */
+  .divide-subtle > * + * {
+    @apply border-t border-slate-200 dark:border-slate-700;
+  }
+
+  /* Focus ring helper */
+  .ring-focus {
+    @apply focus-visible:ring-2 focus-visible:ring-emerald-400;
+  }
+
+  /* Subtle shadow token (kept modest for POS) */
+  .shadow-soft {
+    @apply shadow-xl;
+  }
+}
+
+/* ---------------------------
+   COMPONENTS (ready-to-use)
+   --------------------------- */
+@layer components {
+  .card {
+    /* don’t @apply border-subtle/bg-surface-2 here */
+    @apply rounded-2xl p-4 shadow-xl
+           border border-slate-200 bg-gray-100
+           dark:border-slate-700 dark:bg-slate-800/80;
+  }
+
+  .panel {
+    @apply rounded-xl p-3
+           border border-slate-200 bg-white
+           dark:border-slate-700 dark:bg-slate-900;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm
+           border border-slate-300 bg-white text-gray-800
+           dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2
+           border border-slate-300 bg-white text-gray-900 hover:bg-gray-100
+           dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800
+           focus-visible:ring-2 focus-visible:ring-emerald-400;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 font-semibold
+           bg-emerald-400 text-emerald-950 hover:bg-emerald-300
+           focus-visible:ring-2 focus-visible:ring-emerald-400;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl
+           bg-transparent text-gray-800 dark:text-slate-300 hover:bg-gray-100
+           dark:hover:bg-slate-800 px-3 py-2 focus-visible:ring-2 focus-visible:ring-emerald-400;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    @apply rounded-xl px-3 py-2
+           border border-slate-300 bg-white text-gray-900
+           dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100
+           focus-visible:ring-2 focus-visible:ring-emerald-400;
+  }
+
+  /* Toolbar row */
+  .toolbar {
+    @apply mb-4 flex flex-wrap items-center gap-2 text-sm;
+  }
+
+  /* Scroll containers */
+  .scroll-y {
+    @apply overflow-auto;
+  }
+
+  /* Pills / chips */
+  .pill {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs
+           border border-slate-200 bg-gray-100
+           dark:border-slate-700 dark:bg-slate-800/8 bg-white dark:bg-slate-900 text-gray-600 dark:text-slate-400;
+  }
+}
+
+/* .container-main {
+  background-color: aqua;
+} */
+/* 
+* {
+  outline: 1px solid red;
+} */
+
+/* Hide until scrolling (WebKit browsers) */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.6); /* slate-500/60 */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.6) transparent;
+}
+
+/* Make any element with .scrollable use overlay-like, thin scrollbars */
+.scrollable {
+  overflow-y: auto;
+  overflow-x: auto;
+  /* Firefox: use thin bar, hide track */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+/* Chrome / Edge / Safari */
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+  background: transparent; /* no track */
+}
+
+/* Thumb is invisible by default */
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 200ms ease; /* animate color, not opacity */
+}
+
+/* Thumb color when “active” */
+.scrollable.show-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.6); /* slate-500/60 */
+}
+.scrollable.show-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.8); /* slate-400/80 */
+}
+
+.scrollable.show-scrollbar {
+  scrollbar-color: rgba(100, 116, 139, 0.7) transparent;
+}
+
+/* Hide scrollbar in Firefox/old Edge */
+.scrollbar-none {
+  -ms-overflow-style: none; /* old IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar in WebKit/Blink (Chrome/Edge/Safari) */
+.scrollbar-none::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* optional vertical fade */
+.scroll-fade-y {
+  position: relative;
+}
+.scroll-fade-y::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 18px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(2, 6, 23, 0.35)
+  ); /* adjust colors for themes */
+}
+
+.reset-button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* refresh button */
+@keyframes spin-smooth {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-smooth {
+  animation: spin-smooth 0.7s linear infinite;
+}
+
+/* success toast animation */
+@keyframes scale-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
